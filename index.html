@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FarmConnect- Direct Farm Produce Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Custom animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4ade80;
+            border-radius: 4px;
+        }
+        
+        /* Overlay for modals */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="#" class="flex items-center space-x-2">
+                <img src="https://placeholder.com/40x40" alt="FarmConnectLogo" class="h-10 w-10 rounded-full">
+                <span class="text-2xl font-bold text-green-600">FarmConnect</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="#marketplace" class="text-gray-700 hover:text-green-600 transition">Marketplace</a>
+                <a href="#features" class="text-gray-700 hover:text-green-600 transition">Features</a>
+                <a href="#for-farmers" class="text-gray-700 hover:text-green-600 transition">For Farmers</a>
+                <a href="#about" class="text-gray-700 hover:text-green-600 transition">About</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+                <button id="cartBtn" class="relative text-gray-700 hover:text-green-600">
+                    <i class="fas fa-shopping-cart text-xl"></i>
+                    <span id="cartCount" class="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+                </button>
+                
+                <button id="authBtn" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">Login / Register</button>
+                
+                <button id="mobileMenuBtn" class="md:hidden text-gray-700">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile menu -->
+        <div id="mobileMenu" class="md:hidden hidden bg-white px-4 py-2 shadow-md animate-fadeIn">
+            <a href="#marketplace" class="block py-2 text-gray-700 hover:text-green-600">Marketplace</a>
+            <a href="#features" class="block py-2 text-gray-700 hover:text-green-600">Features</a>
+            <a href="#for-farmers" class="block py-2 text-gray-700 hover:text-green-600">For Farmers</a>
+            <a href="#about" class="block py-2 text-gray-700 hover:text-green-600">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-gradient-to-r from-green-500 to-green-700 text-white py-20">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0 animate-fadeIn">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Fresh Produce Direct from Local Farms</h1>
+                <p class="text-xl mb-6">Connect with local farmers, get the freshest produce delivered to your doorstep or pickup at your convenience.</p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#marketplace" class="bg-white text-green-700 px-6 py-3 rounded-md font-medium hover:bg-gray-100 transition">Shop Now</a>
+                    <button id="sellBtn" class="bg-transparent border-2 border-white px-6 py-3 rounded-md font-medium hover:bg-white hover:text-green-700 transition">Sell on FarmConnect</button>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center animate-fadeIn">
+                <img src="https://placeholder.com/600x400" alt="Fresh produce" class="rounded-lg shadow-2xl max-w-full h-auto">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose FarmConnect</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Feature 1 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer">
+                    <div class="text-green-600 mb-4">
+                        <i class="fas fa-leaf text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Farm Fresh Quality</h3>
+                    <p class="text-gray-600">Direct from local farms to your table, ensuring maximum freshness and quality.</p>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer">
+                    <div class="text-green-600 mb-4">
+                        <i class="fas fa-truck text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Flexible Delivery</h3>
+                    <p class="text-gray-600">Choose delivery or pickup options that fit your schedule and preferences.</p>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer">
+                    <div class="text-green-600 mb-4">
+                        <i class="fas fa-hands-helping text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Support Local</h3>
+                    <p class="text-gray-600">Your purchase directly supports local farmers and sustainable agriculture.</p>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="bg-gray-50 p-6 rounded-xl shadow-sm hover:shadow-md transition cursor-pointer">
+                    <div class="text-green-600 mb-4">
+                        <i class="fas fa-certificate text-4xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2 text-gray-800">Transparent Sourcing</h3>
+                    <p class="text-gray-600">Detailed information about farming practices, certifications, and origin.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Marketplace Section -->
+    <section id="marketplace" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-800">Fresh Produce Marketplace</h2>
+                <div class="relative">
+                    <select class="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                        <option>All Categories</option>
+                        <option>Fruits</option>
+                        <option>Vegetables</option>
+                        <option>Dairy & Eggs</option>
+                        <option>Meat & Poultry</option>
+                        <option>Herbs & Spices</option>
+                        <option>Organic</option>
+                        <option>Cereals</option>
+                    </select>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Product Card 1 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer animate-fadeIn" style="animation-delay: 0.1s">
+                    <div class="relative">
+                        <img src="https://placeholder.com/300x200" alt="Organic Apples" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 left-2 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Organic</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-semibold text-lg text-gray-800">Organic Apples</h3>
+                            <span class="text-yellow-500"><i class="fas fa-star"></i> 4.8</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Sweet and crisp, grown without synthetic pesticides.</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-green-600">$2.99/lb</span>
+                                <span class="text-gray-400 text-sm block">In stock: 85 lbs</span>
+                            </div>
+                            <button class="add-to-cart bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 2 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer animate-fadeIn" style="animation-delay: 0.2s">
+                    <div class="relative">
+                        <img src="https://placeholder.com/300x200" alt="Free-range Eggs" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 left-2 bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Free-range</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-semibold text-lg text-gray-800">Free-range Eggs</h3>
+                            <span class="text-yellow-500"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">From hens that roam freely on pasture (Dozen).</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-green-600">$4.50/dozen</span>
+                                <span class="text-gray-400 text-sm block">In stock: 24</span>
+                            </div>
+                            <button class="add-to-cart bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 3 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer animate-fadeIn" style="animation-delay: 0.3s">
+                    <div class="relative">
+                        <img src="https://placeholder.com/300x200" alt="Heirloom Tomatoes" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 left-2 bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full">Seasonal</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-semibold text-lg text-gray-800">Heirloom Tomatoes</h3>
+                            <span class="text-yellow-500"><i class="fas fa-star"></i> 4.7</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Vine-ripened with exceptional flavor (by the pound).</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-green-600">$3.49/lb</span>
+                                <span class="text-red-400 text-sm block">Low stock: 5 lbs</span>
+                            </div>
+                            <button class="add-to-cart bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Product Card 4 -->
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer animate-fadeIn" style="animation-delay: 0.4s">
+                    <div class="relative">
+                        <img src="https://placeholder.com/300x200" alt="Grass-fed Beef" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 left-2 bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Best Seller</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-semibold text-lg text-gray-800">Grass-fed Ground Beef</h3>
+                            <span class="text-yellow-500"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Pasture-raised, humanely handled (1 lb packages).</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-green-600">$8.99/lb</span>
+                                <span class="text-gray-400 text-sm block">In stock: 42</span>
+                            </div>
+                            <button class="add-to-cart bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+               <!-- 
+                Subscription Card 
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer animate-fadeIn" style="animation-delay: 0.5s">
+                    <div class="relative">
+                        <img src="https://placeholder.com/300x200" alt="CSA Subscription" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 left-2 bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full">Subscription</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-semibold text-lg text-gray-800">Weekly Farm Box</h3>
+                            <span class="text-yellow-500"><i class="fas fa-star"></i> 4.9</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Weekly delivery of seasonal produce (feeds 2-3 people).</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-green-600">$25/week</span>
+                                <span class="text-gray-400 text-sm block">Flexible delivery</span>
+                            </div>
+                            <button class="add-to-cart bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Bulk Purchase Card 
+                <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer animate-fadeIn" style="animation-delay: 0.6s">
+                    <div class="relative">
+                        <img src="https://placeholder.com/300x200" alt="Organic Carrots" class="w-full h-48 object-cover">
+                        <span class="absolute top-2 left-2 bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded-full">Bulk Discount</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-semibold text-lg text-gray-800">Organic Carrots</h3>
+                            <span class="text-yellow-500"><i class="fas fa-star"></i> 4.6</span>
+                        </div>
+                        <p class="text-gray-500 text-sm mb-3">Sweet and crunchy, perfect for juicing or cooking.</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <span class="font-bold text-green-600">$1.99/lb | $1.79/lb (10+lbs)</span>
+                                <span class="text-gray-400 text-sm block">In stock: 120 lbs</span>
+                            </div>
+                            <button class="add-to-cart bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
+                                <i class="fas fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button class="bg-white border border-green-600 text-green-600 px-6 py-3 rounded-md font-medium hover:bg-green-50 transition">
+                    View All Products
+                </button>
+            </div>
+        </div>
+    </section>
+-->
+
+    <!-- For Farmers Section -->
+    <section id="for-farmers" class="py-16 bg-green-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4">Grow Your Farm Business</h2>
+                <p class="text-lg max-w-2xl mx-auto">Join thousands of farmers who are reaching more customers and growing their businesses with FarmConnect</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Farmer Benefit 1 -->
+                <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm hover:bg-opacity-20 transition cursor-pointer">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Expand Your Market</h3>
+                    <p>Reach customers beyond your local area without the hassle of farmers markets.</p>
+                </div>
+                
+                <!-- Farmer Benefit 2 -->
+                <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm hover:bg-opacity-20 transition cursor-pointer">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Powerful Management Tools</h3>
+                    <p>Inventory, orders, delivery routing, and customer management all in one place.</p>
+                </div>
+                
+                <!-- Farmer Benefit 3 -->
+                <div class="bg-white bg-opacity-10 p-6 rounded-xl backdrop-blur-sm hover:bg-opacity-20 transition cursor-pointer">
+                    <div class="text-4xl mb-4">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Fair Pricing</h3>
+                    <p>Keep more of your profits with our low commission rates compared to traditional retail.</p>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center">
+                <button id="signupFarmerBtn" class="bg-white text-green-600 px-8 py-4 rounded-md font-bold text-lg hover:bg-gray-100 transition">
+                    Sign Up as a Farmer <i class="fas fa-arrow-right ml-2"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12">What Our Community Says</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placeholder.com/60x60" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Sarah </h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The quality of produce from FarmConnecthas been consistently amazing. I love knowing exactly which farm my food comes from and supporting local agriculture."</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placeholder.com/60x60" alt="Customer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Michael </h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"The rate at which the produce reaches me is fast and this ensures freshness,which is something i love about FarmConnect."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <div class="flex items-center mb-4">
+                        <img src="https://placeholder.com/60x60" alt="Farmer" class="w-12 h-12 rounded-full mr-4">
+                        <div>
+                            <h4 class="font-semibold">Tom & Maria </h4>
+                            <div class="flex text-yellow-400">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">"FarmConnecthas helped us triple our sales while reducing time spent at farmers markets. The inventory management tools save us hours each week."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subscription Benefits -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center">
+                <div class="lg:w-1/2 mb-10 lg:mb-0 lg:pr-10">
+                    <h2 class="text-3xl font-bold mb-6">Subscribe & Save</h2>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Get the freshest seasonal produce delivered weekly</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">10% discount on all subscription items</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Flexible scheduling - pause or cancel anytime</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Add additional items to your weekly delivery</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                            <span class="text-gray-700">Exclusive recipes and storage tips each week</span>
+                        </li>
+                    </ul>
+                    <button class="mt-8 bg-green-600 text-white px-6 py-3 rounded-md font-medium hover:bg-green-700 transition">
+                        Learn About Subscriptions
+                    </button>
+                </div>
+                <div class="lg:w-1/2">
+                    <img src="https://placeholder.com/600x400" alt="Subscription box" class="rounded-lg shadow-md w-full">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile App CTA -->
+    <section class="py-16 bg-green-700 text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-4">Get the FarmConnectMobile App</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Order fresh produce, manage subscriptions, and track deliveries on the go.</p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <button class="bg-black text-white px-6 py-3 rounded-md flex items-center">
+                    <i class="fab fa-apple text-2xl mr-2"></i>
+                    <div class="text-left">
+                        <div class="text-xs">Download on the</div>
+                        <div class="font-bold">App Store</div>
+                    </div>
+                </button>
+                <button class="bg-black text-white px-6 py-3 rounded-md flex items-center">
+                    <i class="fab fa-google-play text-2xl mr-2"></i>
+                    <div class="text-left">
+                        <div class="text-xs">Get it on</div>
+                        <div class="font-bold">Google Play</div>
+                    </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Column 1 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">FarmConnect</h3>
+                    <p class="text-gray-400 mb-4">Connecting people with fresh, local farm produce through technology.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-white"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Column 2 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Home</a></li>
+                        <li><a href="#marketplace" class="text-gray-400 hover:text-white">Marketplace</a></li>
+                        <li><a href="#features" class="text-gray-400 hover:text-white">Features</a></li>
+                        <li><a href="#for-farmers" class="text-gray-400 hover:text-white">For Farmers</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">About Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 3 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Support</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-400 hover:text-white">Help Center</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">FAQs</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Shipping & Returns</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Contact Us</a></li>
+                        <li><a href="#" class="text-gray-400 hover:text-white">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Column 4 -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Newsletter</h3>
+                    <p class="text-gray-400 mb-4">Subscribe to get updates on new farms, seasonal produce, and special offers.</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="bg-gray-800 text-white px-4 py-2 rounded-l-md focus:outline-none focus:ring-2 focus:ring-green-500 w-full">
+                        <button class="bg-green-600 px-4 py-2 rounded-r-md hover:bg-green-700 transition">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 FarmConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Modal -->
+    <div id="cartModal" class="modal-overlay">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Your Cart</h3>
+                    <button id="closeCartBtn" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <div id="cartItems" class="space-y-4 mb-6">
+                    <!-- Cart items will be added here dynamically -->
+                    <div class="text-center py-10 text-gray-500">
+                        <i class="fas fa-shopping-cart text-4xl mb-2"></i>
+                        <p>Your cart is empty</p>
+                    </div>
+                </div>
+                
+                <div id="cartSummary" class="border-t border-gray-200 pt-4 hidden">
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-600">Subtotal:</span>
+                        <span class="font-semibold" id="cartSubtotal">$0.00</span>
+                    </div>
+                    <div class="flex justify-between mb-2">
+                        <span class="text-gray-600">Delivery:</span>
+                        <span class="font-semibold" id="cartDelivery">Calculated at checkout</span>
+                    </div>
+                    <div class="flex justify-between text-lg font-bold mt-4">
+                        <span>Estimated Total:</span>
+                        <span id="cartTotal">$0.00</span>
+                    </div>
+                    
+                    <button class="w-full bg-green-600 text-white py-3 rounded-md mt-6 font-medium hover:bg-green-700 transition">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="modal-overlay">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-md">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Login or Register</h3>
+                    <button id="closeAuthBtn" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <ul class="flex border-b border-gray-200 mb-6">
+                    <li class="mr-1" id="loginTab">
+                        <a class="bg-white inline-block py-2 px-4 text-green-600 font-semibold border-b-2 border-green-600">Login</a>
+                    </li>
+                    <li class="mr-1" id="registerTab">
+                        <a class="bg-white inline-block py-2 px-4 text-gray-500 font-semibold">Register</a>
+                    </li>
+                </ul>
+                
+                <!-- Login Form -->
+                <div id="loginForm">
+                    <form class="space-y-4">
+                        <div>
+                            <label for="loginEmail" class="block text-gray-700 mb-1">Email</label>
+                            <input type="email" id="loginEmail" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <label for="loginPassword" class="block text-gray-700 mb-1">Password</label>
+                            <input type="password" id="loginPassword" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="rememberMe" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                <label for="rememberMe" class="ml-2 block text-gray-700">Remember me</label>
+                            </div>
+                            <a href="#" class="text-sm text-green-600 hover:text-green-800">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-md font-medium hover:bg-green-700 transition">
+                            Login
+                        </button>
+                    </form>
+                    <div class="mt-4 text-center">
+                        <button id="googleAuthBtn" class="w-full bg-white border border-gray-300 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-50 transition flex items-center justify-center">
+                            <i class="fab fa-google text-red-500 mr-2"></i> Continue with Google
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Register Form -->
+                <div id="registerForm" class="hidden">
+                    <form class="space-y-4">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="firstName" class="block text-gray-700 mb-1">First Name</label>
+                                <input type="text" id="firstName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            </div>
+                            <div>
+                                <label for="lastName" class="block text-gray-700 mb-1">Last Name</label>
+                                <input type="text" id="lastName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="registerEmail" class="block text-gray-700 mb-1">Email</label>
+                            <input type="email" id="registerEmail" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <label for="registerPassword" class="block text-gray-700 mb-1">Password</label>
+                            <input type="password" id="registerPassword" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div>
+                            <label for="confirmPassword" class="block text-gray-700 mb-1">Confirm Password</label>
+                            <input type="password" id="confirmPassword" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                        </div>
+                        <div class="flex items-center">
+                            <input type="checkbox" id="agreeTerms" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                            <label for="agreeTerms" class="ml-2 block text-gray-700">I agree to the <a href="#" class="text-green-600 hover:text-green-800">Terms & Conditions</a></label>
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 text-white py-2 rounded-md font-medium hover:bg-green-700 transition">
+                            Create Account
+                        </button>
+                    </form>
+                    <div class="mt-4 text-center">
+                        <button id="googleRegisterBtn" class="w-full bg-white border border-gray-300 text-gray-700 py-2 rounded-md font-medium hover:bg-gray-50 transition flex items-center justify-center">
+                            <i class="fab fa-google text-red-500 mr-2"></i> Continue with Google
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Farmer Signup Modal -->
+    <div id="farmerSignupModal" class="modal-overlay">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-bold">Farmer Registration</h3>
+                    <button id="closeFarmerBtn" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                
+                <form class="space-y-4">
+                    <div>
+                        <h4 class="font-semibold mb-2 text-gray-800">Farm Information</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="farmName" class="block text-gray-700 mb-1">Farm Name*</label>
+                                <input type="text" id="farmName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            </div>
+                            <div>
+                                <label for="farmingType" class="block text-gray-700 mb-1">Farming Type*</label>
+                                <select id="farmingType" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                                    <option value="">Select</option>
+                                    <option value="vegetables">Vegetables</option>
+                                    <option value="fruits">Fruits</option>
+                                    <option value="dairy">Dairy</option>
+                                    <option value="livestock">Livestock</option>
+                                    <option value="mixed">Mixed Farming</option>
+                                    <option value="Cereals">Cereals</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold mb-2 text-gray-800">Contact Information</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div>
+                                <label for="contactName" class="block text-gray-700 mb-1">Contact Person*</label>
+                                <input type="text" id="contactName" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            </div>
+                            <div>
+                                <label for="contactEmail" class="block text-gray-700 mb-1">Email*</label>
+                                <input type="email" id="contactEmail" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            </div>
+                            <div>
+                                <label for="contactPhone" class="block text-gray-700 mb-1">Phone*</label>
+                                <input type="tel" id="contactPhone" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            </div>
+                            <div>
+                                <label for="farmWebsite" class="block text-gray-700 mb-1">Website (optional)</label>
+                                <input type="url" id="farmWebsite" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold mb-2 text-gray-800">Farm Location</h4>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div>
+                                <label for="farmCountry" class="block text-gray-700 mb-1">Country*</label>
+                                <select id="farmCountry" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                                    <option value="">Select Country</option>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="KE">Kenya</option>
+                                    <!-- More countries would be added here -->
+                                </select>
+                            </div>
+                            <div>
+                                <label for="farmState" class="block text-gray-700 mb-1">State/Region*</label>
+                                <input type="text" id="farmState" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            </div>
+                            <div>
+                                <label for="farmZip" class="block text-gray-700 mb-1">ZIP/Postal Code*</label>
+                                <input type="text" id="farmZip" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <label for="farmAddress" class="block text-gray-700 mb-1">Full Address*</label>
+                            <textarea id="farmAddress" rows="2" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold mb-2 text-gray-800">Farm Practices & Certifications</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="organicCert" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                <label for="organicCert" class="ml-2 block text-gray-700">Certified Organic</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="sustainable" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                <label for="sustainable" class="ml-2 block text-gray-700">Sustainable Practices</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="nonGMO" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                <label for="nonGMO" class="ml-2 block text-gray-700">Non-GMO</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="freeRange" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                <label for="freeRange" class="ml-2 block text-gray-700">Free Range</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="otherCert" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                <label for="otherCert" class="ml-2 block text-gray-700">Other Certifications (please specify below)</label>
+                            </div>
+                        </div>
+                        <div class="mt-2">
+                            <label for="farmDescription" class="block text-gray-700 mb-1">Farm Description*</label>
+                            <textarea id="farmDescription" rows="3" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold mb-2 text-gray-800">Delivery Options</h4>
+                        <div class="space-y-2">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="deliveryLocal" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                <label for="deliveryLocal" class="ml-2 block text-gray-700">Local Delivery (within 50 miles)</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="deliveryRegional" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                <label for="deliveryRegional" class="ml-2 block text-gray-700">Regional Delivery (within state)</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="pickupFarm" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                <label for="pickupFarm" class="ml-2 block text-gray-700">Farm Pickup</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="checkbox" id="pickupMarket" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded">
+                                <label for="pickupMarket" class="ml-2 block text-gray-700">Farmers Market Pickup</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold mb-2 text-gray-800">Payment & Terms</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="agreeTermsFarmer" class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded" required>
+                                <label for="agreeTermsFarmer" class="ml-2 block text-gray-700">I agree to the <a href="#" class="text-green-600 hover:text-green-800">Farmer Agreement</a> and <a href="#" class="text-green-600 hover:text-green-800">Privacy Policy</a>*</label>
+                            </div>
+                            <div class="text-sm text-gray-500">
+                                <p>After submission, our team will review your application and contact you within 2 business days to complete your onboarding.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-md font-medium hover:bg-green-700 transition">
+                        Submit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>   
+</body>
+</html>
