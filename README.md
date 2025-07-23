@@ -34,7 +34,7 @@ FarmConnect is a modern web application built with React and Vite that connects 
 
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/kevinnjoroge-w/FarmConnect-
    cd farmconnect
    ```
 
