@@ -1,12 +1,108 @@
-# React + Vite
+# FarmConnect
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+FarmConnect is a modern web application built with React and Vite that connects local farmers directly with consumers. The platform enables users to shop fresh produce from local farms with flexible delivery or pickup options, while providing farmers with powerful tools to grow their business and manage their operations efficiently.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19.x
+- Vite
+- TailwindCSS
+- JavaScript (ES Modules)
 
-## Expanding the ESLint configuration
+## Features Overview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### For Consumers
+- **Fresh Produce Marketplace:** Browse and shop a wide variety of fresh fruits, vegetables, dairy, meat, herbs, and organic products sourced directly from local farms.
+- **Flexible Delivery Options:** Choose between home delivery or convenient pickup options.
+- **Transparent Sourcing:** Access detailed information about farming practices, certifications, and product origins.
+- **User Testimonials:** Read feedback from satisfied customers about the quality and freshness of produce.
+
+### For Farmers
+- **Grow Your Farm Business:** Reach more customers beyond local farmers markets.
+- **Powerful Management Tools:** Manage inventory, orders, delivery routing, and customer relationships all in one place.
+- **Fair Pricing:** Benefit from low commission rates compared to traditional retail.
+- **Sign Up Call-to-Action:** Easy signup process to join the FarmConnect platform.
+
+## Getting Started
+
+### Prerequisites
+
+- Node.js (v16 or later recommended)
+- npm (comes with Node.js)
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd farmconnect
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+### Running the Development Server
+
+Start the development server with:
+
+```bash
+npm run dev
+```
+
+This will launch the app locally, typically accessible at `http://localhost:3000`.
+
+### Building for Production
+
+To build the app for production deployment:
+
+```bash
+npm run build
+```
+
+### Preview Production Build
+
+To preview the production build locally:
+
+```bash
+npm run preview
+```
+
+### Linting
+
+To run ESLint and check for code quality issues:
+
+```bash
+npm run lint
+```
+
+## Project Structure
+
+```
+/src
+  ├── main.jsx          # Main entry point rendering the App component
+  ├── App.jsx           # Main app component assembling all sections
+  ├── index.css         # Global styles
+  ├── component/        # React components for different sections
+      ├── Navbar.jsx
+      ├── Hero.jsx
+      ├── Feature.jsx
+      ├── Product.jsx
+      ├── Farm.jsx
+      ├── Testimonial.jsx
+      ├── Mobile.jsx
+      ├── Footer.jsx
+/public                  # Static assets and public files
+index.html              # HTML template
+package.json            # Project metadata and scripts
+vite.config.js          # Vite configuration
+```
+
+## License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
+
+## Contact
+
+For questions or contributions, please contact the project maintainer.
