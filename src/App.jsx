@@ -3,9 +3,11 @@ import './index.css'
 import Navbar from './component/Navbar'
 import Hero from './component/Hero'
 import Feature from './component/Feature'
-import Market from './component/Market'
 import Product from './component/Product'
-import Farmer from './component/Farmer'
+import Farm from './component/Farm'
+import Testimonial from './component/Testimonial'
+import Mobile from './component/Mobile'
+import Footer from './component/Footer'
 
 const App = () => {
   return (
@@ -13,7 +15,11 @@ const App = () => {
       <Navbar />
       <Hero />
       <Feature />
-
+      <Product />
+      <Farm />
+      <Testimonial />
+      <Mobile />
+      <Footer />
     </>
   )
 }
