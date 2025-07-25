@@ -1,4 +1,6 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faShoppingCart, faBars } from '@fortawesome/free-solid-svg-icons'
 
 const Navbar = () => {
   return (
@@ -19,14 +21,14 @@ const Navbar = () => {
             
             <div className="flex items-center space-x-4">
                 <button id="cartBtn" className="relative text-gray-700 hover:text-green-600">
-                    <i className="fas fa-shopping-cart text-xl"></i>
+                    <FontAwesomeIcon icon={faShoppingCart} className="text-xl" />
                     <span id="cartCount" className="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
                 </button>
                 
                <a href='Login.jsx'><button id="authBtn" className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">Login / Register</button> </a>
                 
                 <button id="mobileMenuBtn" className="md:hidden text-gray-700">
-                    <i className="fas fa-bars text-xl"></i>
+                    <FontAwesomeIcon icon={faBars} className="text-xl" />
                 </button>
             </div>
         </div>

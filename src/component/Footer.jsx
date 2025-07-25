@@ -1,4 +1,6 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
 
 const Footer = () => {
   return (
@@ -11,10 +13,10 @@ const Footer = () => {
                     <h3 className="text-lg font-semibold mb-4">FarmConnect</h3>
                     <p className="text-gray-400 mb-4">Connecting people with fresh, local farm produce through technology.</p>
                     <div className="flex space-x-4">
-                        <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-facebook-f"></i></a>
-                        <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-twitter"></i></a>
-                        <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-instagram"></i></a>
-                        <a href="#" className="text-gray-400 hover:text-white"><i className="fab fa-linkedin-in"></i></a>
+                        <a href="#" className="text-gray-400 hover:text-white"><FontAwesomeIcon icon={faFacebookF} /></a>
+                        <a href="#" className="text-gray-400 hover:text-white"><FontAwesomeIcon icon={faTwitter} /></a>
+                        <a href="#" className="text-gray-400 hover:text-white"><FontAwesomeIcon icon={faInstagram} /></a>
+                        <a href="#" className="text-gray-400 hover:text-white"><FontAwesomeIcon icon={faLinkedinIn} /></a>
                     </div>
                 </div>
                 
@@ -23,10 +25,10 @@ const Footer = () => {
                     <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
                     <ul className="space-y-2">
                         <li><a href="#" className="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="#marketplace" className="text-gray-400 hover:text-white">Marketplace</a></li>
-                        <li><a href="#features" className="text-gray-400 hover:text-white">Features</a></li>
-                        <li><a href="#for-farmers" className="text-gray-400 hover:text-white">For Farmers</a></li>
-                        <li><a href="#" className="text-gray-400 hover:text-white">About Us</a></li>
+                        <li><a href="#marketplace" className="text-gray-400 hover:text-green-600 transition">Marketplace</a></li>
+                        <li><a href="#features" className="text-gray-400 hover:text-green-600 transition">Features</a></li>
+                        <li><a href="#for-farmers" className="text-gray-400 hover:text-green-600 transition">For Farmers</a></li>
+                        <li><a href="#" className="text-gray-400 hover:text-green-600 transition">About Us</a></li>
                     </ul>
                 </div>
                 

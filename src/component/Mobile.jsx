@@ -1,4 +1,6 @@
 import React from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faApple, faGooglePlay } from '@fortawesome/free-brands-svg-icons'
 
 const Mobile = () => {
   return (
@@ -8,14 +10,14 @@ const Mobile = () => {
             <p className="text-xl mb-8 max-w-2xl mx-auto">Order fresh produce, manage subscriptions, and track deliveries on the go.</p>
             <div className="flex flex-wrap justify-center gap-4">
                 <button className="bg-black text-white px-6 py-3 rounded-md flex items-center">
-                    <i className="fab fa-apple text-2xl mr-2"></i>
+                    <FontAwesomeIcon icon={faApple} className="text-2xl mr-2" />
                     <div className="text-left">
                         <div className="text-xs">Download on the</div>
                         <div className="font-bold">App Store</div>
                     </div>
                 </button>
                 <button className="bg-black text-white px-6 py-3 rounded-md flex items-center">
-                    <i className="fab fa-google-play text-2xl mr-2"></i>
+                    <FontAwesomeIcon icon={faGooglePlay} className="text-2xl mr-2" />
                     <div className="text-left">
                         <div className="text-xs">Get it on</div>
                         <div className="font-bold">Google Play</div>
