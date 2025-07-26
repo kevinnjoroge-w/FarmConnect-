@@ -59,5 +59,21 @@
     "priceUnit": "lb",
     "stockUnit": "",
     "imageUrl": "https://plus.unsplash.com/premium_photo-1726761661509-180de637d42a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8R3Jhc3MlMjBmZWQlMjBHcm91bmQlMjBCZWVmfGVufDB8fDB8fHww"
+  },
+  {
+    
+    "id": "4",
+    "name": "Organic Heirloom Tomatoes",
+    "description": " humanely handled (1 lb packages).",
+    "price": 8.99,
+    "stock": 42,
+    "category": "Tubers",
+    "rating": 4.9,
+    "label": "Best Seller",
+    "labelColor": "yellow-100",
+    "labelTextColor": "yellow-800",
+    "priceUnit": "lb",
+    "stockUnit": "",
+    "imageUrl": "https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80"
   }
 ]

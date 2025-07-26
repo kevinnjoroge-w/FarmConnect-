@@ -1,6 +1,7 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFacebookF, faTwitter, faInstagram, faLinkedinIn } from '@fortawesome/free-brands-svg-icons'
+import { faFacebookF, faTwitter, faInstagram, faLinkedinIn} from '@fortawesome/free-brands-svg-icons'
+import { faLeaf } from '@fortawesome/free-solid-svg-icons/faLeaf';
 
 const Footer = () => {
   return (
@@ -10,7 +11,10 @@ const Footer = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
                 {/* <!-- Column 1 --> */}
                 <div>
-                    <h3 className="text-lg font-semibold mb-4">FarmConnect</h3>
+                    <div class="flex items-center space-x-2 mb-4">
+                    <div className="text-2xl text-green-600"><FontAwesomeIcon icon={faLeaf} /> </div>
+                     <h3 className="text-xl font-semibold mb-4">FarmConnect</h3>
+                    </div>
                     <p className="text-gray-400 mb-4">Connecting people with fresh, local farm produce through technology.</p>
                     <div className="flex space-x-4">
                         <a href="#" className="text-gray-400 hover:text-white"><FontAwesomeIcon icon={faFacebookF} /></a>

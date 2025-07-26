@@ -11,13 +11,13 @@ const Login = () => {
           onClick={() => setHasAccount(true)}
           className={`px-4 py-2 mr-2 rounded ${hasAccount ? 'bg-green-600 text-white' : 'bg-gray-200'}`}
         >
-          I have an account
+          Login to account 
         </button>
         <button
           onClick={() => setHasAccount(false)}
           className={`px-4 py-2 rounded ${!hasAccount ? 'bg-green-600 text-white' : 'bg-gray-200'}`}
         >
-          I need to register
+         Create an account
         </button>
       </div>
 

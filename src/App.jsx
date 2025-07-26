@@ -18,7 +18,7 @@ const AppContent = () => {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Hero />} />
+        <Route path="/" element={<><Hero /><Feature /></>} />
         <Route path="/features" element={<Feature />} />
         <Route path="/marketplace" element={<Product />} />
         <Route path="/for-farmers" element={<Farm />} />

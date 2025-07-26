@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShoppingCart, faBars } from '@fortawesome/free-solid-svg-icons'
 import { Link } from 'react-router-dom'
 import Cart from './Cart'
+import { faLeaf } from '@fortawesome/free-solid-svg-icons/faLeaf'
 
 const Navbar = () => {
   const [showCart, setShowCart] = useState(false)
@@ -16,7 +17,7 @@ const Navbar = () => {
       <nav className="bg-white shadow-md sticky top-0 z-50">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center space-x-2">
-            <img src="https://placeholder.com/40x40" alt="FarmConnectLogo" className="h-10 w-10 rounded-full" />
+           <div className="text-4xl font-bold text-green-600"><FontAwesomeIcon icon={faLeaf} /></div>
             <span className="text-2xl font-bold text-green-600">FarmConnect</span>
           </Link>
 
@@ -33,9 +34,7 @@ const Navbar = () => {
             <Link to="/for-farmers" className="text-gray-700 hover:text-green-600 transition">
               For Farmers
             </Link>
-            <Link to="/about" className="text-gray-700 hover:text-green-600 transition">
-              About
-            </Link>
+          
           </div>
 
           <div className="flex items-center space-x-4">
@@ -44,7 +43,7 @@ const Navbar = () => {
               <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
             </button>
 
-            <Link to="/login">
+            <Link to="/login"> 
               <button id="authBtn" className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">
                 Login / Register
               </button>

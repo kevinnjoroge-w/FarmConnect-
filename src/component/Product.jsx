@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import productData from './product.json'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faPlus, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faCartPlus, faChevronDown } from '@fortawesome/free-solid-svg-icons'
+
 
 const Product = () => {
   const [products, setProducts] = useState([])
@@ -70,7 +71,7 @@ const Product = () => {
                       </span>
                     </div>
                     <button className="add-to-cart bg-green-600 text-white p-2 rounded-full hover:bg-green-700 transition">
-                      <FontAwesomeIcon icon={faPlus} />
+                      <FontAwesomeIcon icon={faCartPlus} />
                     </button>
                   </div>
                 </div>
