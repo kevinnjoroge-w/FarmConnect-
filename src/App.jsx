@@ -2,15 +2,14 @@ import React from 'react'
 import './index.css'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import Navbar from './component/Navbar'
-import Hero from './component/Hero'
-import Feature from './component/Feature'
-import Product from './component/Product'
-import Farm from './component/Farm'
-import Testimonial from './component/Testimonial'
-import Mobile from './component/Mobile'
+import Homepage from './pages/Homepage'
 import Footer from './component/Footer'
-import Login from './component/Login'
-import FarmerSignup from './component/FarmerSignup'
+import Marketplace from './pages/Marketplace'
+import Featurepage from './pages/Featurepage'
+import Loginpage from './pages/Loginpage'
+import Farmerspage from './pages/Framerspage'
+import Cart from './component/Cart'
+
 
 const AppContent = () => {
   const location = useLocation()
@@ -18,14 +17,19 @@ const AppContent = () => {
     <>
       <Navbar />
       <Routes>
-        <Route path="/" element={<><Hero /><Feature /></>} />
-        <Route path="/features" element={<Feature />} />
-        <Route path="/marketplace" element={<Product />} />
+        <Route path="/" element={<><Homepage /></>} />
+        <Route path="/marketplace" element={<Marketplace />} />
+        <Route path="/features" element={ <Featurepage/>} />
+        <Route path="/login" element={<Loginpage />} /> 
+        <Route path="/for-farmers" element={<Farmerspage />} />
+        <Route path= "/cart" element= {<Cart />} />
+        {/* <Route path="/features" element={<Feature />} />
+       
         <Route path="/for-farmers" element={<Farm />} />
-        <Route path="/testimonials" element={<Testimonial />} />
+        
         <Route path="/mobile" element={<Mobile />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/farmer-signup" element={<FarmerSignup />} />
+        <Route path="/login" element={<Login />} /> */}
+
       </Routes>
       {location.pathname !== '/login' && <Footer />}
     </>

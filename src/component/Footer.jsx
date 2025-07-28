@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFacebookF, faTwitter, faInstagram, faLinkedinIn} from '@fortawesome/free-brands-svg-icons'
 import { faLeaf } from '@fortawesome/free-solid-svg-icons/faLeaf';
@@ -28,11 +29,10 @@ const Footer = () => {
                 <div>
                     <h3 className="text-lg font-semibold mb-4">Quick Links</h3>
                     <ul className="space-y-2">
-                        <li><a href="#" className="text-gray-400 hover:text-white">Home</a></li>
-                        <li><a href="#marketplace" className="text-gray-400 hover:text-green-600 transition">Marketplace</a></li>
-                        <li><a href="#features" className="text-gray-400 hover:text-green-600 transition">Features</a></li>
-                        <li><a href="#for-farmers" className="text-gray-400 hover:text-green-600 transition">For Farmers</a></li>
-                        <li><a href="#" className="text-gray-400 hover:text-green-600 transition">About Us</a></li>
+                        <li> <Link to="/"  className="text-gray-400 hover:text-white">Home</Link></li>
+                        <li><Link to="/marketplace"  className="text-gray-400 hover:text-green-600 transition">Marketplace</Link></li>
+                        <li><Link to="/features" className="text-gray-400 hover:text-green-600 transition">Features</Link></li>
+                        <li><Link to="/for-farmers" className="text-gray-400 hover:text-green-600 transition">For Farmers</Link></li>
                     </ul>
                 </div>
                 

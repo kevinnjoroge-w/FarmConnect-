@@ -38,10 +38,13 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <button id="cartBtn" className="relative text-gray-700 hover:text-green-600" onClick={toggleCart}>
-              <FontAwesomeIcon icon={faShoppingCart} className="text-xl" />
+           <Link to = "/cart">
+           <button id="cartBtn" className="relative text-gray-700 hover:text-green-600" >
+             <FontAwesomeIcon icon={faShoppingCart} className="text-xl" /> 
               <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-            </button>
+            </button> 
+           </Link> 
+            
 
             <Link to="/login"> 
               <button id="authBtn" className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition">
@@ -70,7 +73,7 @@ const Navbar = () => {
           </Link>
         </div>
       </nav>
-      {showCart && <Cart />}
+     
     </>
   )
 }
