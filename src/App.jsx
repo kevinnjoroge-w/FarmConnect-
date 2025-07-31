@@ -9,6 +9,7 @@ import Featurepage from './pages/Featurepage'
 import Loginpage from './pages/Loginpage'
 import Farmerspage from './pages/Framerspage'
 import Cart from './component/Cart'
+import FarmerSignup from './component/FarmerSignup'
 
 
 const AppContent = () => {
@@ -23,6 +24,7 @@ const AppContent = () => {
         <Route path="/login" element={<Loginpage />} /> 
         <Route path="/for-farmers" element={<Farmerspage />} />
         <Route path= "/cart" element= {<Cart />} />
+        <Route path="/farmers-signup" element={<FarmerSignup />} />
         {/* <Route path="/features" element={<Feature />} />
        
         <Route path="/for-farmers" element={<Farm />} />
@@ -31,7 +33,7 @@ const AppContent = () => {
         <Route path="/login" element={<Login />} /> */}
 
       </Routes>
-      {location.pathname !== '/login' && <Footer />}
+      {!['/login', '/farmers-signup'].includes(location.pathname) && <Footer />}
     </>
   )
 }

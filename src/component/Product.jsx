@@ -6,10 +6,15 @@ import { faStar, faCartPlus, faChevronDown } from '@fortawesome/free-solid-svg-i
 
 const Product = () => {
   const [products, setProducts] = useState([])
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     setProducts(productData)
   }, [])
+
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
   return (
     <>
@@ -17,24 +22,33 @@ const Product = () => {
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center mb-8">
             <h2 className="text-3xl font-bold text-gray-800">Fresh Produce Marketplace</h2>
-            <div className="relative">
-              <select className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
-                <option>All Categories</option>
-                <option>Fruits</option>
-                <option>Vegetables</option>
-                <option>Dairy & Eggs</option>
-                <option>Meat & Poultry</option>
-                <option>Herbs & Spices</option>
-                <option>Organic</option>
-                <option>Cereals</option>
-              </select>
-              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                <FontAwesomeIcon icon={faChevronDown} />
+            <div className="flex space-x-4">
+              <input
+                type="text"
+                placeholder="Search products..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+              />
+              <div className="relative">
+                <select className="appearance-none bg-white border border-gray-300 rounded-md px-4 py-2 pr-8 focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500">
+                  <option>All Categories</option>
+                  <option>Fruits</option>
+                  <option>Vegetables</option>
+                  <option>Dairy & Eggs</option>
+                  <option>Meat & Poultry</option>
+                  <option>Herbs & Spices</option>
+                  <option>Organic</option>
+                  <option>Cereals</option>
+                </select>
+                <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                  <FontAwesomeIcon icon={faChevronDown} />
+                </div>
               </div>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {products.map((product, index) => (
+            {filteredProducts.map((product, index) => (
               <div
                 key={product.id}
                 className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition cursor-pointer animate-fadeIn"
