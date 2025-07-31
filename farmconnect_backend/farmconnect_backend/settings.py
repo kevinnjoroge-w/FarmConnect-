@@ -136,3 +136,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ],
 }
+
+# Africa's Talking SMS credentials
+AFRICASTALKING_USERNAME = 'Nyctooh'
+AFRICASTALKING_API_KEY = 'atsk_7d5ea0045e598ac811e5a89ab03b76bdeed395a1fe0591b9e64491ffe66feea24f594530'

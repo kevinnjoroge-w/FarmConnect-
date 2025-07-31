@@ -44,7 +44,7 @@ const Farm = () => {
         </div>
 
         <div className="mt-12 text-center">
-          <Link to="/farmer-signup" id="signupFarmerBtn" className="bg-white text-green-600 px-8 py-4 rounded-md font-bold text-lg hover:bg-gray-100 transition inline-flex items-center justify-center">
+          <Link to="/farmers-signup" id="signupFarmerBtn" className="bg-white text-green-600 px-8 py-4 rounded-md font-bold text-lg hover:bg-gray-100 transition inline-flex items-center justify-center">
             Sign Up as a Farmer <FontAwesomeIcon icon={faArrowRight} className="ml-2" />
           </Link>
         </div>
